@@ -20,6 +20,12 @@ const LoginPage: React.FC = () => {
 
       await signInWithEmailAndPassword(auth, data.email, data.password);
 
+      if (data.rememberMe) {
+        localStorage.setItem('rememberedEmail', data.email);
+      } else {
+        localStorage.removeItem('rememberedEmail');
+      }
+
       navigate('/dashboard');
 
     } catch (e) {
