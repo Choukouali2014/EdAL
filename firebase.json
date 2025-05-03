@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "Choukouali2014/EdAL",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
