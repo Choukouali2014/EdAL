@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './../utils/firebase';
 import { signOut } from 'firebase/auth';
+import { useUserProfile } from './../utils/useUserProfile';
 
 const DashboardPage: React.FC = () => {
     const navigate = useNavigate();
-    const [user, loading] = useAuthState(auth);
+    const { user, profile, loading } = useUserProfile();
 
     const handleLogout = async () => {
         await signOut(auth);
@@ -30,7 +30,7 @@ const DashboardPage: React.FC = () => {
                     className="mx-auto mb-4 w-24 h-24 rounded-full object-cover"
                 />
                 <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-                    Welcome, {user?.displayName}!
+                    Welcome, {user?.displayName ?? `${profile?.firstName} ${profile?.lastName}`}!
                 </h1>
                 <p className="text-gray-600 mb-6">{user?.email}</p>
 

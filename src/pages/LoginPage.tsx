@@ -4,7 +4,11 @@ import { Flame } from 'lucide-react';
 import LoginForm from '../components/auth/LoginForm';
 import SocialLoginButtons from '../components/auth/SocialLoginButtons';
 import { LoginFormData } from '../types/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword, browserLocalPersistence,
+  browserSessionPersistence,
+  setPersistence,
+} from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +22,12 @@ const LoginPage: React.FC = () => {
 
     try {
 
+      const persistence = data.rememberMe
+        ? browserLocalPersistence
+        : browserSessionPersistence;
+
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      await setPersistence(auth, persistence);
 
       if (data.rememberMe) {
         localStorage.setItem('rememberedEmail', data.email);
