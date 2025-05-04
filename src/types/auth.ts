@@ -30,3 +30,22 @@ export interface SignUpFormErrors {
   acceptTerms?: string;
   general?: string;
 }
+export interface ForgotPasswordFormData {
+  email: string;
+}
+
+export interface ForgotPasswordFormErrors {
+  email?: string;
+  general?: string;
+}
+
+export interface ResetPasswordFormData {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface ResetPasswordFormErrors {
+  password?: string;
+  confirmPassword?: string;
+  general?: string;
+}

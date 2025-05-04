@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DashboardPage from './pages/DashboardPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './utils/firebase';
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
         <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <SignUpPage />} />
+        <Route path="/forgot-password" element={user ? <Navigate to="/forgot-password" /> : <ForgotPasswordPage />} />
+        <Route path="/reset-password" element={user ? <Navigate to="/reset-password" /> : <ResetPasswordPage />} />
         <Route
           path="/dashboard"
           element={
